@@ -12,7 +12,7 @@ export async function hasCircularDependency(
     async function check(currentId) {
         const id = currentId.toString();
 
-        // Target movie-তে ফিরে এলে cycle পাওয়া গেছে
+        // A cycle is found when we return to the target movie
         if (id === movieId.toString()) {
             return true;
         }
