@@ -41,3 +41,22 @@ const cinemaPostController = async (req, res, next) => {
 };
 
 export default cinemaPostController;
+
+
+const getCinemasController = async (req, res, next) => {
+    try {
+        const cinemas = getDB().collection("cinemas");
+
+        const allCinemas = await cinemas.find({}).toArray();
+
+        return res.status(200).json({
+            count: allCinemas.length,
+            cinemas: allCinemas,
+        });
+
+    } catch (error) {
+        next(error);
+    }
+};
+
+export  {getCinemasController};
