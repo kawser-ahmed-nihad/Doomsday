@@ -4,7 +4,7 @@ import { getDB } from "../db/db.js";
 
 import {
     validateMovie
-} from "../controllers/validators.js";
+} from "./validators.js";
 
 import {
     hasCircularDependency
@@ -210,4 +210,23 @@ const moviePatchController = async (req, res, next) => {
 };
 
 export { moviePatchController };
+
+
+const getMoviesController = async (req, res, next) => {
+    try {
+        const movies = getDB().collection("movies");
+
+        const allMovies = await movies.find({}).toArray();
+
+        return res.status(200).json({
+            count: allMovies.length,
+            movies: allMovies
+        });
+
+    } catch (error) {
+        next(error);
+    }
+};
+
+export { getMoviesController };
 
