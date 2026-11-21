@@ -1,9 +1,10 @@
 import express from "express";
-import cinemaPostController, { getCinemasController } from "../controllers/cinemaController.js";
+import cinemaPostController, { bookingQuoteController, getCinemasController } from "../controllers/cinemaController.js";
 
 const router = express.Router();
 
 router.post("/", cinemaPostController);
 router.get("/", getCinemasController);
+router.get("/:id/booking", bookingQuoteController);
 
 export default router;
